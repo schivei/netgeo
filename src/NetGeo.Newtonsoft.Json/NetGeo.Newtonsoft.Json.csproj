@@ -3,6 +3,7 @@
 
   <PropertyGroup>
     <RootNamespace>NetGeo.Json</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard2.'))">
