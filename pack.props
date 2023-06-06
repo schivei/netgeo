@@ -1,0 +1,39 @@
+<Project>
+  <Import Project="versions.props" />
+  
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Elton Schivei Costa</Authors>
+    <Company>Elton Schivei Costa</Company>
+    <Product>.NET Geographic Library</Product>
+    <Description>.Net Geographic Library manipulation.</Description>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/schivei/netgeo</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/schivei/netgeo</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>geo,geojson,kml,crs,client,dotnet</PackageTags>
+    <PackageReleaseNotes>Update references</PackageReleaseNotes>
+    <DebugType>Full</DebugType>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageVersion>$(Version)</PackageVersion>
+    <ReleaseVersion>$(Version)</ReleaseVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+</Project>

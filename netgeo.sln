@@ -1,0 +1,86 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - sln", "0 - sln", "{BF393E28-98F6-4CE3-9F30-34CF38AAEC1A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.filenesting.json = .filenesting.json
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		.gitmodules = .gitmodules
+		.github\dependabot.yml = .github\dependabot.yml
+		LICENSE = LICENSE
+		logo.png = logo.png
+		.github\workflows\main.yml = .github\workflows\main.yml
+		pack.props = pack.props
+		pack.sh = pack.sh
+		README.md = README.md
+		SECURITY.md = SECURITY.md
+		versions.props = versions.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - src", "1 - src", "{4FD5B283-2FAB-4184-A888-2D5E3E496AFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - tests", "2 - tests", "{3F2E5103-0F52-4B42-A7A7-35F4CF3DCFF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGeo.Json", "src\NetGeo.Json\NetGeo.Json.csproj", "{84914624-A8B1-4370-A42D-AA48F8979906}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGeo.System.Text.Json", "src\NetGeo.System.Text.Json\NetGeo.System.Text.Json.csproj", "{9D9A9B93-15B0-40C8-BE5C-783F0DD9F7E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGeo.Newtonsoft.Json", "src\NetGeo.Newtonsoft.Json\NetGeo.Newtonsoft.Json.csproj", "{B652F13A-0A15-4659-AD36-A421008F6502}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGeo.Tests.Newtonsoft", "tests\NetGeo.Tests.Newtonsoft\NetGeo.Tests.Newtonsoft.csproj", "{62D7AB6A-0FB2-485C-B0EA-657DABBD51C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGeo.Tests.System.Text", "tests\NetGeo.Tests.System.Text\NetGeo.Tests.System.Text.csproj", "{FAD0BEDA-F965-4AFD-96A3-C87D9F6E85B2}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NetGeo.SharedTests", "tests\NetGeo.SharedTests\NetGeo.SharedTests.shproj", "{D4D0ABCC-BB16-4DC1-9786-9681B8524A85}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84914624-A8B1-4370-A42D-AA48F8979906}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84914624-A8B1-4370-A42D-AA48F8979906}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84914624-A8B1-4370-A42D-AA48F8979906}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84914624-A8B1-4370-A42D-AA48F8979906}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D9A9B93-15B0-40C8-BE5C-783F0DD9F7E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D9A9B93-15B0-40C8-BE5C-783F0DD9F7E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D9A9B93-15B0-40C8-BE5C-783F0DD9F7E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D9A9B93-15B0-40C8-BE5C-783F0DD9F7E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B652F13A-0A15-4659-AD36-A421008F6502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B652F13A-0A15-4659-AD36-A421008F6502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B652F13A-0A15-4659-AD36-A421008F6502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B652F13A-0A15-4659-AD36-A421008F6502}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62D7AB6A-0FB2-485C-B0EA-657DABBD51C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62D7AB6A-0FB2-485C-B0EA-657DABBD51C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62D7AB6A-0FB2-485C-B0EA-657DABBD51C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62D7AB6A-0FB2-485C-B0EA-657DABBD51C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAD0BEDA-F965-4AFD-96A3-C87D9F6E85B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAD0BEDA-F965-4AFD-96A3-C87D9F6E85B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAD0BEDA-F965-4AFD-96A3-C87D9F6E85B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAD0BEDA-F965-4AFD-96A3-C87D9F6E85B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{84914624-A8B1-4370-A42D-AA48F8979906} = {4FD5B283-2FAB-4184-A888-2D5E3E496AFE}
+		{9D9A9B93-15B0-40C8-BE5C-783F0DD9F7E7} = {4FD5B283-2FAB-4184-A888-2D5E3E496AFE}
+		{B652F13A-0A15-4659-AD36-A421008F6502} = {4FD5B283-2FAB-4184-A888-2D5E3E496AFE}
+		{62D7AB6A-0FB2-485C-B0EA-657DABBD51C7} = {3F2E5103-0F52-4B42-A7A7-35F4CF3DCFF2}
+		{FAD0BEDA-F965-4AFD-96A3-C87D9F6E85B2} = {3F2E5103-0F52-4B42-A7A7-35F4CF3DCFF2}
+		{D4D0ABCC-BB16-4DC1-9786-9681B8524A85} = {3F2E5103-0F52-4B42-A7A7-35F4CF3DCFF2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {095E7A5B-B33E-48FF-9923-14FDE52C4A9B}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		tests\NetGeo.SharedTests\NetGeo.SharedTests.projitems*{62d7ab6a-0fb2-485c-b0ea-657dabbd51c7}*SharedItemsImports = 5
+		tests\NetGeo.SharedTests\NetGeo.SharedTests.projitems*{d4d0abcc-bb16-4dc1-9786-9681b8524a85}*SharedItemsImports = 13
+		tests\NetGeo.SharedTests\NetGeo.SharedTests.projitems*{fad0beda-f965-4afd-96a3-c87d9f6e85b2}*SharedItemsImports = 5
+	EndGlobalSection
+EndGlobal

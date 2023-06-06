@@ -1,0 +1,114 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Package Publisher
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  - push
+  - pull_request
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    name: Build Projects
+    runs-on: ubuntu-latest
+    
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+      pull-requests: write
+      issues: write
+      repository-projects: write
+      
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'csharp' ]
+
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v3
+
+    - name: Install .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: ${{ matrix.language }}
+
+    - name: Build and Test
+      env:
+        GRPC_DNS_RESOLVER: native
+      run: |
+        dotnet restore src/NetGeo.Json/NetGeo.Json.csproj &&
+        dotnet restore src/NetGeo.System.Text.Json/NetGeo.System.Text.Json.csproj &&
+        dotnet restore src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj &&
+        dotnet restore tests/NetGeo.Tests.Newtonsoft/NetGeo.Tests.Newtonsoft.csproj &&
+        dotnet restore tests/NetGeo.Tests.System.Text/NetGeo.Tests.System.Text.csproj &&
+        dotnet build src/NetGeo.Json/NetGeo.Json.csproj --no-restore &&
+        dotnet build src/NetGeo.System.Text.Json/NetGeo.System.Text.Json.csproj --no-restore &&
+        dotnet build src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj --no-restore &&
+        dotnet build tests/NetGeo.Tests.Newtonsoft/NetGeo.Tests.Newtonsoft.csproj --no-restore &&
+        dotnet build tests/NetGeo.Tests.System.Text/NetGeo.Tests.System.Text.csproj --no-restore &&
+        dotnet test tests/NetGeo.Tests.Newtonsoft/NetGeo.Tests.Newtonsoft.csproj --no-build --no-restore &&
+        dotnet test tests/NetGeo.Tests.System.Text/NetGeo.Tests.System.Text.csproj --no-build --no-restore
+    
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+      with:
+        category: "/language:${{matrix.language}}"
+
+  dependabot:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' &&  github.event_name == 'pull_request' && github.ref != 'refs/heads/master' }}
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v1
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Approve a PR
+        run: gh pr review --approve "$PR_URL" && gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+  pr-merge:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/dependabot/master' }}
+    # create a pr to master
+    steps:
+      - name: Create PR with master
+        uses: peter-evans/create-pull-request@v3
+        with:
+          branch: main
+          delete-branch: false
+          labels: dependencies
+
+  # This workflow contains a single job called "build"
+  publish:
+    name: Create Packages
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Checkout Source
+      uses: actions/checkout@v2
+
+    - name: Install .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 7.0.x
+        
+    - name: Build Packages
+      run: ./pack.sh
+
+    - name: Publish
+      run: dotnet nuget push ./build-packages/*.nupkg --api-key ${{ secrets.NUGETKEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
