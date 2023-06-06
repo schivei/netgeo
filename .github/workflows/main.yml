@@ -64,6 +64,14 @@ jobs:
         category: "/language:${{matrix.language}}"
 
   dependabot:
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+      pull-requests: write
+      issues: write
+      repository-projects: write
+      
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' &&  github.event_name == 'pull_request' && github.ref != 'refs/heads/main' }}
     steps:
@@ -79,6 +87,14 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   pr-merge:
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+      pull-requests: write
+      issues: write
+      repository-projects: write
+      
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/dependabot/master' }}
     # create a pr to master
@@ -92,8 +108,17 @@ jobs:
 
   # This workflow contains a single job called "build"
   publish:
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+      pull-requests: write
+      issues: write
+      repository-projects: write
+      
     name: Create Packages
     # The type of runner that the job will run on
+    needs: [build]
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
     # Steps represent a sequence of tasks that will be executed as part of the job
