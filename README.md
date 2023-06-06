@@ -19,6 +19,8 @@ Also you can parse across CRS (Coordinate Reference Systems) and projections.
 - **NetGeo.System.Text.Json**: [![NuGet](https://img.shields.io/nuget/v/NetGeo.System.Text.Json?style=flat)](https://www.nuget.org/packages/NetGeo.System.Text.Json/)
 - **NetGeo.Newtonsoft.Json**: [![NuGet](https://img.shields.io/nuget/v/NetGeo.Newtonsoft.Json?style=flat)](https://www.nuget.org/packages/NetGeo.Newtonsoft.Json/)
 
+[![Package Publisher](https://github.com/schivei/netgeo/actions/workflows/main.yml/badge.svg)](https://github.com/schivei/netgeo/actions/workflows/main.yml)
+
 ## Install
 
 Install using nuget:
