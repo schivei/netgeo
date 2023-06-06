@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="../../pack.props" />
 
-  <PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   

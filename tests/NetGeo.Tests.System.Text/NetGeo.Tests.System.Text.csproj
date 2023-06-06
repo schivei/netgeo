@@ -25,12 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NetGeo.Json\NetGeo.Json.csproj">
-      <Targets>netstandard2.0</Targets>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\NetGeo.Newtonsoft.Json\NetGeo.Newtonsoft.Json.csproj">
-      <Targets>netstandard2.0</Targets>
-    </ProjectReference>
+    <ProjectReference Include="..\..\src\NetGeo.Json\NetGeo.Json.csproj" />
+    <ProjectReference Include="..\..\src\NetGeo.Newtonsoft.Json\NetGeo.Newtonsoft.Json.csproj" />
   </ItemGroup>
 
   <Import Project="..\NetGeo.SharedTests\NetGeo.SharedTests.projitems" Label="Shared" />
