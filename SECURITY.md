@@ -9,10 +9,9 @@ currently being supported with security updates.
 | ------- | ------------------ |
 | netstandard2.0   | :white_check_mark: |
 | netstandard2.1   | :white_check_mark: |
-| 5.0.x   | :white_check_mark:                |
 | 6.0.x   | :white_check_mark: |
 | 7.0.x   | :white_check_mark:                |
-| <5.0   | :x:                |
+| <6.0   | :x:                |
 | >7   | :x:                |
 
 ## Reporting a Vulnerability

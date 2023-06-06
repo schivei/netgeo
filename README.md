@@ -37,7 +37,6 @@ dotnet add package NetGeo.Newtonsoft.Json
 | ---------------- | -------------- |
 |      2023.X      | netstandard2.0 |
 |      2023.X      | netstandard2.1 |
-|      2023.X      | .net 5         |
 |      2023.X      | .net 6         |
 |      2023.X      | .net 7         |
 
@@ -67,4 +66,4 @@ The extensions methods runs with Newtonsoft.Json and System.Text.Json.
 * CRS Convertion
 * Other types where is not GeoJSON
 * .NET 8
-  * Comming in Dec 2023
+  * Comming in Dec 2023 
