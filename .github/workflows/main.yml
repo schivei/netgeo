@@ -46,13 +46,11 @@ jobs:
         GRPC_DNS_RESOLVER: native
       run: |
         dotnet restore src/NetGeo.Json/NetGeo.Json.csproj &&
-        dotnet restore src/NetGeo.System.Text.Json/NetGeo.System.Text.Json.csproj &&
         dotnet restore src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj &&
         dotnet restore tests/NetGeo.Tests.Newtonsoft/NetGeo.Tests.Newtonsoft.csproj &&
         dotnet restore tests/NetGeo.Tests.System.Text/NetGeo.Tests.System.Text.csproj &&
-        dotnet build src/NetGeo.Json/NetGeo.Json.csproj --no-restore -f netstandard2.0 &&
-        dotnet build src/NetGeo.System.Text.Json/NetGeo.System.Text.Json.csproj --no-restore -f netstandard2.0 &&
-        dotnet build src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj --no-restore -f netstandard2.0 &&
+        dotnet build src/NetGeo.Json/NetGeo.Json.csproj --no-restore -f net7.0 &&
+        dotnet build src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj --no-restore -f net7.0 &&
         dotnet build tests/NetGeo.Tests.Newtonsoft/NetGeo.Tests.Newtonsoft.csproj --no-restore &&
         dotnet build tests/NetGeo.Tests.System.Text/NetGeo.Tests.System.Text.csproj --no-restore &&
         dotnet test tests/NetGeo.Tests.Newtonsoft/NetGeo.Tests.Newtonsoft.csproj --no-build --no-restore &&
@@ -135,22 +133,10 @@ jobs:
     - name: Build Packages
       run: |
         dotnet restore src/NetGeo.Json/NetGeo.Json.csproj &&
-        dotnet restore src/NetGeo.System.Text.Json/NetGeo.System.Text.Json.csproj &&
         dotnet restore src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj &&
-        dotnet build --no-restore -c Release -f netstandard2.0 src/NetGeo.Json/NetGeo.Json.csproj &&
-        dotnet build --no-restore -c Release -f netstandard2.0 src/NetGeo.System.Text.Json/NetGeo.System.Text.Json.csproj &&
-        dotnet build --no-restore -c Release -f netstandard2.0 src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj &&
-        dotnet build --no-restore -c Release -f netstandard2.1 src/NetGeo.Json/NetGeo.Json.csproj &&
-        dotnet build --no-restore -c Release -f netstandard2.1 src/NetGeo.System.Text.Json/NetGeo.System.Text.Json.csproj &&
-        dotnet build --no-restore -c Release -f netstandard2.1 src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj &&
-        dotnet build --no-restore -c Release -f net6.0 src/NetGeo.Json/NetGeo.Json.csproj &&
-        dotnet build --no-restore -c Release -f net6.0 src/NetGeo.System.Text.Json/NetGeo.System.Text.Json.csproj &&
-        dotnet build --no-restore -c Release -f net6.0 src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj &&
-        dotnet build --no-restore -c Release -f net7.0 src/NetGeo.Json/NetGeo.Json.csproj &&
-        dotnet build --no-restore -c Release -f net7.0 src/NetGeo.System.Text.Json/NetGeo.System.Text.Json.csproj &&
-        dotnet build --no-restore -c Release -f net7.0 src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj &&
+        dotnet build --no-restore -c Release -f 7.0 src/NetGeo.Json/NetGeo.Json.csproj &&
+        dotnet build --no-restore -c Release -f 7.0 src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj &&
         dotnet pack --no-restore --no-build -c Release -o ./build-packages -p:IncludeSymbols=false src/NetGeo.Json/NetGeo.Json.csproj &&
-        dotnet pack --no-restore --no-build -c Release -o ./build-packages -p:IncludeSymbols=false src/NetGeo.System.Text.Json/NetGeo.System.Text.Json.csproj &&
         dotnet pack --no-restore --no-build -c Release -o ./build-packages -p:IncludeSymbols=false src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj
 
     - name: Publish
