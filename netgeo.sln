@@ -25,15 +25,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - src", "1 - src", "{4FD5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - tests", "2 - tests", "{3F2E5103-0F52-4B42-A7A7-35F4CF3DCFF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGeo.Json", "src\NetGeo.Json\NetGeo.Json.csproj", "{84914624-A8B1-4370-A42D-AA48F8979906}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetGeo.Json", "src\NetGeo.Json\NetGeo.Json.csproj", "{84914624-A8B1-4370-A42D-AA48F8979906}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGeo.System.Text.Json", "src\NetGeo.System.Text.Json\NetGeo.System.Text.Json.csproj", "{9D9A9B93-15B0-40C8-BE5C-783F0DD9F7E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetGeo.Newtonsoft.Json", "src\NetGeo.Newtonsoft.Json\NetGeo.Newtonsoft.Json.csproj", "{B652F13A-0A15-4659-AD36-A421008F6502}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGeo.Newtonsoft.Json", "src\NetGeo.Newtonsoft.Json\NetGeo.Newtonsoft.Json.csproj", "{B652F13A-0A15-4659-AD36-A421008F6502}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetGeo.Tests.Newtonsoft", "tests\NetGeo.Tests.Newtonsoft\NetGeo.Tests.Newtonsoft.csproj", "{62D7AB6A-0FB2-485C-B0EA-657DABBD51C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGeo.Tests.Newtonsoft", "tests\NetGeo.Tests.Newtonsoft\NetGeo.Tests.Newtonsoft.csproj", "{62D7AB6A-0FB2-485C-B0EA-657DABBD51C7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGeo.Tests.System.Text", "tests\NetGeo.Tests.System.Text\NetGeo.Tests.System.Text.csproj", "{FAD0BEDA-F965-4AFD-96A3-C87D9F6E85B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetGeo.Tests.System.Text", "tests\NetGeo.Tests.System.Text\NetGeo.Tests.System.Text.csproj", "{FAD0BEDA-F965-4AFD-96A3-C87D9F6E85B2}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NetGeo.SharedTests", "tests\NetGeo.SharedTests\NetGeo.SharedTests.shproj", "{D4D0ABCC-BB16-4DC1-9786-9681B8524A85}"
 EndProject
@@ -47,10 +45,6 @@ Global
 		{84914624-A8B1-4370-A42D-AA48F8979906}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84914624-A8B1-4370-A42D-AA48F8979906}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84914624-A8B1-4370-A42D-AA48F8979906}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9D9A9B93-15B0-40C8-BE5C-783F0DD9F7E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D9A9B93-15B0-40C8-BE5C-783F0DD9F7E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D9A9B93-15B0-40C8-BE5C-783F0DD9F7E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D9A9B93-15B0-40C8-BE5C-783F0DD9F7E7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B652F13A-0A15-4659-AD36-A421008F6502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B652F13A-0A15-4659-AD36-A421008F6502}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B652F13A-0A15-4659-AD36-A421008F6502}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,7 +63,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{84914624-A8B1-4370-A42D-AA48F8979906} = {4FD5B283-2FAB-4184-A888-2D5E3E496AFE}
-		{9D9A9B93-15B0-40C8-BE5C-783F0DD9F7E7} = {4FD5B283-2FAB-4184-A888-2D5E3E496AFE}
 		{B652F13A-0A15-4659-AD36-A421008F6502} = {4FD5B283-2FAB-4184-A888-2D5E3E496AFE}
 		{62D7AB6A-0FB2-485C-B0EA-657DABBD51C7} = {3F2E5103-0F52-4B42-A7A7-35F4CF3DCFF2}
 		{FAD0BEDA-F965-4AFD-96A3-C87D9F6E85B2} = {3F2E5103-0F52-4B42-A7A7-35F4CF3DCFF2}

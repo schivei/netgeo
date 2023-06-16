@@ -1,10 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="../../versions.props" />
 
+
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <TargetFrameworks>net7.0</TargetFrameworks>
-
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
 

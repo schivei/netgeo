@@ -1,5 +1,5 @@
 #if SYSTEMTEXTJSON
-using System.Text.Json;
+using NetGeo.Json.SystemText;
 #else
 using Newtonsoft.Json;
 #endif

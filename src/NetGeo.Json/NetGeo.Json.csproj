@@ -1,15 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="../../pack.props" />
 
-  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <TargetFramework>netstandard2.0</TargetFramework>
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
-  
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="IndexRange" Version="1.0.2" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-    <PackageReference Include="IndexRange" Version="1.0.2" />
-  </ItemGroup>
 </Project>

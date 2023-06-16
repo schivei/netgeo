@@ -1,10 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="../../versions.props" />
 
+
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <TargetFrameworks>net7.0</TargetFrameworks>
-
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
 
@@ -26,7 +25,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\NetGeo.Json\NetGeo.Json.csproj" />
-    <ProjectReference Include="..\..\src\NetGeo.Newtonsoft.Json\NetGeo.Newtonsoft.Json.csproj" />
   </ItemGroup>
 
   <Import Project="..\NetGeo.SharedTests\NetGeo.SharedTests.projitems" Label="Shared" />
