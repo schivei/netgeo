@@ -6,14 +6,21 @@ public static class GeoExtensions
 {
     public static void SetDefaults()
     {
+        if (JsonSerializerOptions.Default.Converters.Any(x => x is GeoObjectConverter or CrsConverter))
+            return;
+
+        JsonSerializerOptions.Default
+            .Converters.Add(new GeoObjectConverter());
+
+        JsonSerializerOptions.Default
+            .Converters.Add(new CrsConverter());
     }
 
     private static JsonSerializerOptions Options()
     {
-        var opts = new JsonSerializerOptions();
-        opts.Converters.Add(new GeoObjectConverter());
+        SetDefaults();
 
-        return opts;
+        return JsonSerializerOptions.Default;
     }
 
     public static string ToGeoJson<T>(this T geoObject) =>

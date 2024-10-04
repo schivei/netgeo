@@ -187,22 +187,22 @@ public class GeoJsonTests : Assert
     {
         var dataToSerialize = new GeometryCollection
         {
-            Geometries = new Geometry[]
-            {
+            Geometries =
+            [
                 item == 1 ?
-                new Point { Coordinates = new [] {100.1, 0.1d } } :
+                new Point { Coordinates = [100.1, 0.1d] } :
                 item == 2 ?
-                new Point { Coordinates = new [] { 100.1,0.1,10.1d } } :
-                new Point{ Coordinates = new [] {100.1, 0.1d } },
+                new Point { Coordinates = [100.1,0.1,10.1d] } :
+                new Point{ Coordinates = [100.1, 0.1d] },
                 item == 1 ?
-                new LineString { Coordinates = new double[][] { new[] { 101.1, 0.1d }, new[] { 102.1, 1.1d } } } :
+                new LineString { Coordinates = [[101.1, 0.1d], [102.1, 1.1d]] } :
                 item == 2 ?
-                new LineString { Coordinates = new double[][] { new[] { 101.1, 0.1d, 10.1d }, new[] { 102.1, 1.1d, 10.1d } } } :
+                new LineString { Coordinates = [[101.1, 0.1d, 10.1d], [102.1, 1.1d, 10.1d]] } :
                 new LineString {
-                    Coordinates = new double[][] { new[] { 101.1, 0.1d }, new[] { 102.1, 1.1d } },
-                    Bbox = new [] { 100.1, 0.1d, 102.1, 1.1d }
+                    Coordinates = [[101.1, 0.1d], [102.1, 1.1d]],
+                    Bbox = [100.1, 0.1d, 102.1, 1.1d]
                 }
-            }
+            ]
         };
 
         var json = dataToSerialize.ToGeoJson();
@@ -282,7 +282,7 @@ public class GeoJsonTests : Assert
         // else default crs
         else
         {
-            True(data.Crs.Properties.Name == "urn:ogc:def:crs:OGC:1.3:CRS84");
+            Equal("urn:ogc:def:crs:OGC:1.3:CRS84", data.Crs.Properties.Name);
         }
     }
 
@@ -309,8 +309,8 @@ public class GeoJsonTests : Assert
 
         var dataToSerialize = new FeatureCollection
         {
-            Features = new[]
-            {
+            Features =
+            [
                 new Feature
                 {
                     Geometry = new Geometry
@@ -319,7 +319,7 @@ public class GeoJsonTests : Assert
                         Bbox = bbox
                     }
                 }
-            }
+            ]
         };
 
         if (type == GeoType.Point)
@@ -368,7 +368,7 @@ public class GeoJsonTests : Assert
         // else default crs
         else
         {
-            True(data.Crs.Properties.Name == "urn:ogc:def:crs:OGC:1.3:CRS84");
+            Equal("urn:ogc:def:crs:OGC:1.3:CRS84", data.Crs.Properties.Name);
         }
     }
 }

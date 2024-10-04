@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 
 namespace NetGeo.SharedTests;
 
@@ -17,42 +17,41 @@ public class Assert : Xunit.Assert
             True(assert, message);
     }
 
-    public static void Void(Action act)
-    {
-        try
-        {
-            act.Invoke();
-            True(true);
-        }
-#pragma warning disable CA1031 // Do not catch general exception types
-        catch (Exception ex)
-        {
-            True(false, ex.Message);
-        }
-#pragma warning restore CA1031 // Do not catch general exception types
-    }
+    public static void Void(Action act) =>
+        Fail(act);
 
-    public static async Task TaskAsync(Func<Task> act, string msg = null)
-    {
-        try
-        {
-            await act.Invoke();
-            True(true);
-        }
-#pragma warning disable CA1031 // Do not catch general exception types
-        catch (Exception ex)
-        {
-            if (msg is null)
-                True(false, ex.Message);
-            else
-                True(false, $"{msg}: {ex.Message}");
-        }
-#pragma warning restore CA1031 // Do not catch general exception types
-    }
+    public static async Task TaskAsync(Func<Task> act, string msg = null) =>
+        await Fail(act, msg);
 
     public static Task TaskAsync<T>(Func<T, Task> act, T obj, string msg = null) =>
         TaskAsync(() => act.Invoke(obj), msg);
 
     public static Task TaskAsync<T, TE>(Func<T, TE, Task> act, T obj, TE obj2, string msg = null) =>
         TaskAsync(() => act.Invoke(obj, obj2), msg);
+
+    public static void Fail(Action act, string msg = null)
+    {
+        try
+        {
+            act.Invoke();
+            True(true);
+        }
+        catch (Exception ex)
+        {
+            Fail(msg is null ? ex.Message : $"{msg}: {ex.Message}");
+        }
+    }
+
+    public static async Task Fail(Func<Task> act, string msg = null)
+    {
+        try
+        {
+            await act.Invoke();
+            True(true);
+        }
+        catch (Exception ex)
+        {
+            Fail(msg is null ? ex.Message : $"{msg}: {ex.Message}");
+        }
+    }
 }
