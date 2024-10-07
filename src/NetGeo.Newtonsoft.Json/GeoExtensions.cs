@@ -9,16 +9,18 @@ public static class GeoExtensions
     {
         var settings = JsonConvert.DefaultSettings?.Invoke() ?? new JsonSerializerSettings();
 
-        if (settings.Converters.Any(x => x is GeoObjectConverter or CrsConverter))
-            return;
-
-        settings.Converters = new List<JsonConverter>(settings.Converters)
+        settings.Converters = new HashSet<JsonConverter>(settings.Converters)
         {
+            new CrsConverter(),
             new GeoObjectConverter(),
-            new CrsConverter()
-        };
+        }.ToList();
 
         settings.Culture = CultureInfo.InvariantCulture;
+        settings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
+        settings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
+        settings.TypeNameHandling = TypeNameHandling.Auto;
+        settings.DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate;
+        settings.NullValueHandling = NullValueHandling.Ignore;
 
         JsonConvert.DefaultSettings = () => settings;
     }

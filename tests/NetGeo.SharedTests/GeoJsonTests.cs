@@ -4,6 +4,7 @@ using NetGeo.Json.SystemText;
 using Newtonsoft.Json;
 #endif
 using NetGeo.Json;
+using LateApexEarlySpeed.Xunit.Assertion.Json;
 
 namespace NetGeo.SharedTests;
 
@@ -47,7 +48,7 @@ public class GeoJsonTests : Assert
 
         var json = Serialize(dataToSerialize);
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = Deserialize<Point>(geoJson);
         Equivalent(dataToSerialize, data);
@@ -74,7 +75,7 @@ public class GeoJsonTests : Assert
 
         var json = Serialize(dataToSerialize);
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = Deserialize<Polygon>(geoJson);
         Equivalent(dataToSerialize, data);
@@ -98,7 +99,7 @@ public class GeoJsonTests : Assert
 
         var json = dataToSerialize.ToGeoJson();
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = geoJson.ToGeoObject<MultiPolygon>();
         Equivalent(dataToSerialize, data);
@@ -122,7 +123,7 @@ public class GeoJsonTests : Assert
 
         var json = dataToSerialize.ToGeoJson();
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = geoJson.ToGeoObject<LineString>();
         Equivalent(dataToSerialize, data);
@@ -146,7 +147,7 @@ public class GeoJsonTests : Assert
 
         var json = dataToSerialize.ToGeoJson();
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = geoJson.ToGeoObject<MultiLineString>();
         Equivalent(dataToSerialize, data);
@@ -170,7 +171,7 @@ public class GeoJsonTests : Assert
 
         var json = dataToSerialize.ToGeoJson();
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = geoJson.ToGeoObject<MultiPoint>();
         Equivalent(dataToSerialize, data);
@@ -207,7 +208,7 @@ public class GeoJsonTests : Assert
 
         var json = dataToSerialize.ToGeoJson();
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = geoJson.ToGeoObject<GeometryCollection>();
         Equivalent(dataToSerialize, data);
@@ -267,7 +268,7 @@ public class GeoJsonTests : Assert
 
         var json = dataToSerialize.ToGeoJson();
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = geoJson.ToGeoObject<Feature>();
         Equivalent(dataToSerialize, data);
@@ -353,7 +354,7 @@ public class GeoJsonTests : Assert
 
         var json = dataToSerialize.ToGeoJson();
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = geoJson.ToGeoObject<FeatureCollection>();
         Equivalent(dataToSerialize, data);
