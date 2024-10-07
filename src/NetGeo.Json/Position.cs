@@ -32,7 +32,7 @@ public class Position
     public double? Altitude { get; set; }
 
     public double[] ToCoordinates() =>
-        Altitude.HasValue ? new[] { Longitude, Latitude, Altitude.Value } : new[] { Longitude, Latitude };
+        Altitude.HasValue ? [Longitude, Latitude, Altitude.Value] : [Longitude, Latitude];
 
     public override string ToString() =>
         $"[{string.Join(",", ToCoordinates().Select(x => x.ToString(CultureInfo.InvariantCulture)))}]";

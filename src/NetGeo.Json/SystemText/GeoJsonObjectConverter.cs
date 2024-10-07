@@ -47,7 +47,7 @@ internal sealed class GeoObjectConverter : JsonConverter<GeoObject>
         };
     }
 
-    private static GeoObject ReadGeometryCollection(JsonElement el, GeometryCollection geometryCollection, JsonSerializerOptions options)
+    private static GeometryCollection ReadGeometryCollection(JsonElement el, GeometryCollection geometryCollection, JsonSerializerOptions options)
     {
         if (el.TryGetProperty("geometries", out var geometries))
         {
@@ -62,7 +62,7 @@ internal sealed class GeoObjectConverter : JsonConverter<GeoObject>
         return geometryCollection;
     }
 
-    private static GeoObject ReadFeature(JsonElement el, Feature feature, JsonSerializerOptions options)
+    private static Feature ReadFeature(JsonElement el, Feature feature, JsonSerializerOptions options)
     {
         if (el.TryGetProperty("geometry", out var geometry))
         {
@@ -92,7 +92,7 @@ internal sealed class GeoObjectConverter : JsonConverter<GeoObject>
         return feature;
     }
 
-    private static GeoObject ReadFeatureCollection(JsonElement el, FeatureCollection featureCollection, JsonSerializerOptions options)
+    private static FeatureCollection ReadFeatureCollection(JsonElement el, FeatureCollection featureCollection, JsonSerializerOptions options)
     {
         if (el.TryGetProperty("features", out var features))
         {
@@ -103,7 +103,7 @@ internal sealed class GeoObjectConverter : JsonConverter<GeoObject>
                 feats.Add(arr.GetRawText().ToGeoObject<Feature>());
             }
 
-            featureCollection.Features = feats.ToArray();
+            featureCollection.Features = [.. feats];
         }
 
         if (el.TryGetProperty("crs", out var crs))
@@ -181,7 +181,7 @@ internal sealed class GeoObjectConverter : JsonConverter<GeoObject>
     {
         writer.WriteStartObject();
 
-        writer.WriteString("type", geom.Type.ToString());
+        writer.WriteString("type", Enum.GetName(geom.Type));
 
         if (geom.Bbox is not null)
         {
@@ -217,7 +217,7 @@ internal sealed class GeoObjectConverter : JsonConverter<GeoObject>
     {
         writer.WriteStartObject();
 
-        writer.WriteString("type", featureCollection.Type.ToString());
+        writer.WriteString("type", Enum.GetName(featureCollection.Type));
 
         if (options.Converters.All(x => x is not GeoObjectConverter))
         {
@@ -261,7 +261,7 @@ internal sealed class GeoObjectConverter : JsonConverter<GeoObject>
     {
         writer.WriteStartObject();
 
-        writer.WriteString("type", feature.Type.ToString());
+        writer.WriteString("type", Enum.GetName(feature.Type));
 
         if (options.Converters.All(x => x is not GeoObjectConverter))
         {
@@ -310,7 +310,7 @@ internal sealed class GeoObjectConverter : JsonConverter<GeoObject>
             options.Converters.Add(new GeoObjectConverter());
         }
 
-        writer.WriteString("type", geometryCollection.Type.ToString());
+        writer.WriteString("type", Enum.GetName(geometryCollection.Type));
 
         if (geometryCollection.Bbox is not null)
         {

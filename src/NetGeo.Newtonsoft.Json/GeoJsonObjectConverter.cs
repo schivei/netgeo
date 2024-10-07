@@ -46,7 +46,7 @@ internal sealed class GeoObjectConverter : JsonConverter
         };
     }
 
-    private static object? ReadGeometryCollection(JObject el, GeometryCollection geometryCollection, JsonSerializer serializer)
+    private static GeometryCollection? ReadGeometryCollection(JObject el, GeometryCollection geometryCollection, JsonSerializer serializer)
     {
         if (el.TryGetValue("geometries", out var geometries))
         {
@@ -56,7 +56,7 @@ internal sealed class GeoObjectConverter : JsonConverter
         return geometryCollection;
     }
 
-    private static object? ReadFeature(JObject el, Feature feature, JsonSerializer serializer)
+    private static Feature? ReadFeature(JObject el, Feature feature, JsonSerializer serializer)
     {
         if (el.TryGetValue("geometry", out var geometry))
         {
@@ -86,7 +86,7 @@ internal sealed class GeoObjectConverter : JsonConverter
         return feature;
     }
 
-    private static object? ReadFeatureCollection(JObject el, FeatureCollection featureCollection, JsonSerializer serializer)
+    private static FeatureCollection? ReadFeatureCollection(JObject el, FeatureCollection featureCollection, JsonSerializer serializer)
     {
         if (el.TryGetValue("features", out var features))
         {
@@ -140,7 +140,7 @@ internal sealed class GeoObjectConverter : JsonConverter
         };
     }
 
-    private static object? ReadMultiPolygon(JObject el, MultiPolygon multiPolygon, JsonSerializer serializer)
+    private static MultiPolygon? ReadMultiPolygon(JObject el, MultiPolygon multiPolygon, JsonSerializer serializer)
     {
         if (el.TryGetValue("coordinates", out var coordinates))
         {
@@ -150,7 +150,7 @@ internal sealed class GeoObjectConverter : JsonConverter
         return multiPolygon;
     }
 
-    private static object? ReadPolygon(JObject el, Polygon polygon, JsonSerializer serializer)
+    private static Polygon? ReadPolygon(JObject el, Polygon polygon, JsonSerializer serializer)
     {
         if (el.TryGetValue("coordinates", out var coordinates))
         {
@@ -160,7 +160,7 @@ internal sealed class GeoObjectConverter : JsonConverter
         return polygon;
     }
 
-    private static object? ReadMultiLineString(JObject el, MultiLineString multiLineString, JsonSerializer serializer)
+    private static MultiLineString? ReadMultiLineString(JObject el, MultiLineString multiLineString, JsonSerializer serializer)
     {
         if (el.TryGetValue("coordinates", out var coordinates))
         {
@@ -170,7 +170,7 @@ internal sealed class GeoObjectConverter : JsonConverter
         return multiLineString;
     }
 
-    private static object? ReadLineString(JObject el, LineString lineString, JsonSerializer serializer)
+    private static LineString? ReadLineString(JObject el, LineString lineString, JsonSerializer serializer)
     {
         if (el.TryGetValue("coordinates", out var coordinates))
         {
@@ -180,7 +180,7 @@ internal sealed class GeoObjectConverter : JsonConverter
         return lineString;
     }
 
-    private static object? ReadMultiPoint(JObject el, MultiPoint multiPoint, JsonSerializer serializer)
+    private static MultiPoint? ReadMultiPoint(JObject el, MultiPoint multiPoint, JsonSerializer serializer)
     {
         if (el.TryGetValue("coordinates", out var coordinates))
         {
@@ -190,7 +190,7 @@ internal sealed class GeoObjectConverter : JsonConverter
         return multiPoint;
     }
 
-    private static object? ReadPoint(JObject el, Point point, JsonSerializer serializer)
+    private static Point? ReadPoint(JObject el, Point point, JsonSerializer serializer)
     {
         if (el.TryGetValue("coordinates", out var coordinates))
         {
@@ -217,7 +217,7 @@ internal sealed class GeoObjectConverter : JsonConverter
         writer.WriteStartObject();
 
         writer.WritePropertyName("type");
-        writer.WriteValue(geom.Type.ToString());
+        writer.WriteValue(Enum.GetName(geom.Type));
 
         if (geom.Bbox != null)
         {
@@ -254,7 +254,7 @@ internal sealed class GeoObjectConverter : JsonConverter
         writer.WriteStartObject();
 
         writer.WritePropertyName("type");
-        writer.WriteValue(geometryCollection.Type.ToString());
+        writer.WriteValue(Enum.GetName(geometryCollection.Type));
 
         if (geometryCollection.Bbox != null)
         {
@@ -284,7 +284,7 @@ internal sealed class GeoObjectConverter : JsonConverter
         writer.WriteStartObject();
 
         writer.WritePropertyName("type");
-        writer.WriteValue(featureCollection.Type.ToString());
+        writer.WriteValue(Enum.GetName(featureCollection.Type));
 
         if (featureCollection.Bbox != null)
         {
@@ -319,7 +319,7 @@ internal sealed class GeoObjectConverter : JsonConverter
         writer.WriteStartObject();
 
         writer.WritePropertyName("type");
-        writer.WriteValue(feature.Type.ToString());
+        writer.WriteValue(Enum.GetName(feature.Type));
 
         if (feature.Bbox != null)
         {

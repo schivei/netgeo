@@ -34,7 +34,7 @@ jobs:
     - name: Install .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 7.0.x
+        dotnet-version: 8.0.x
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
@@ -49,8 +49,8 @@ jobs:
         dotnet restore src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj &&
         dotnet restore tests/NetGeo.Tests.Newtonsoft/NetGeo.Tests.Newtonsoft.csproj &&
         dotnet restore tests/NetGeo.Tests.System.Text/NetGeo.Tests.System.Text.csproj &&
-        dotnet build src/NetGeo.Json/NetGeo.Json.csproj --no-restore -f net7.0 &&
-        dotnet build src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj --no-restore -f net7.0 &&
+        dotnet build src/NetGeo.Json/NetGeo.Json.csproj --no-restore -f net8.0 &&
+        dotnet build src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj --no-restore -f net8.0 &&
         dotnet build tests/NetGeo.Tests.Newtonsoft/NetGeo.Tests.Newtonsoft.csproj --no-restore &&
         dotnet build tests/NetGeo.Tests.System.Text/NetGeo.Tests.System.Text.csproj --no-restore &&
         dotnet test tests/NetGeo.Tests.Newtonsoft/NetGeo.Tests.Newtonsoft.csproj --no-build --no-restore &&
@@ -128,14 +128,14 @@ jobs:
     - name: Install .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 7.0.x
+        dotnet-version: 8.0.x
         
     - name: Build Packages
       run: |
         dotnet restore src/NetGeo.Json/NetGeo.Json.csproj &&
         dotnet restore src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj &&
-        dotnet build --no-restore -c Release -f net7.0 src/NetGeo.Json/NetGeo.Json.csproj &&
-        dotnet build --no-restore -c Release -f net7.0 src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj &&
+        dotnet build --no-restore -c Release -f net8.0 src/NetGeo.Json/NetGeo.Json.csproj &&
+        dotnet build --no-restore -c Release -f net8.0 src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj &&
         dotnet pack --no-restore --no-build -c Release -o ./build-packages -p:IncludeSymbols=false src/NetGeo.Json/NetGeo.Json.csproj &&
         dotnet pack --no-restore --no-build -c Release -o ./build-packages -p:IncludeSymbols=false src/NetGeo.Newtonsoft.Json/NetGeo.Newtonsoft.Json.csproj
 

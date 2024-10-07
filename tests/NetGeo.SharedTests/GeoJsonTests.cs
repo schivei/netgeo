@@ -4,6 +4,7 @@ using NetGeo.Json.SystemText;
 using Newtonsoft.Json;
 #endif
 using NetGeo.Json;
+using LateApexEarlySpeed.Xunit.Assertion.Json;
 
 namespace NetGeo.SharedTests;
 
@@ -47,7 +48,7 @@ public class GeoJsonTests : Assert
 
         var json = Serialize(dataToSerialize);
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = Deserialize<Point>(geoJson);
         Equivalent(dataToSerialize, data);
@@ -74,7 +75,7 @@ public class GeoJsonTests : Assert
 
         var json = Serialize(dataToSerialize);
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = Deserialize<Polygon>(geoJson);
         Equivalent(dataToSerialize, data);
@@ -98,7 +99,7 @@ public class GeoJsonTests : Assert
 
         var json = dataToSerialize.ToGeoJson();
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = geoJson.ToGeoObject<MultiPolygon>();
         Equivalent(dataToSerialize, data);
@@ -122,7 +123,7 @@ public class GeoJsonTests : Assert
 
         var json = dataToSerialize.ToGeoJson();
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = geoJson.ToGeoObject<LineString>();
         Equivalent(dataToSerialize, data);
@@ -146,7 +147,7 @@ public class GeoJsonTests : Assert
 
         var json = dataToSerialize.ToGeoJson();
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = geoJson.ToGeoObject<MultiLineString>();
         Equivalent(dataToSerialize, data);
@@ -170,7 +171,7 @@ public class GeoJsonTests : Assert
 
         var json = dataToSerialize.ToGeoJson();
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = geoJson.ToGeoObject<MultiPoint>();
         Equivalent(dataToSerialize, data);
@@ -187,27 +188,27 @@ public class GeoJsonTests : Assert
     {
         var dataToSerialize = new GeometryCollection
         {
-            Geometries = new Geometry[]
-            {
+            Geometries =
+            [
                 item == 1 ?
-                new Point { Coordinates = new [] {100.1, 0.1d } } :
+                new Point { Coordinates = [100.1, 0.1d] } :
                 item == 2 ?
-                new Point { Coordinates = new [] { 100.1,0.1,10.1d } } :
-                new Point{ Coordinates = new [] {100.1, 0.1d } },
+                new Point { Coordinates = [100.1,0.1,10.1d] } :
+                new Point{ Coordinates = [100.1, 0.1d] },
                 item == 1 ?
-                new LineString { Coordinates = new double[][] { new[] { 101.1, 0.1d }, new[] { 102.1, 1.1d } } } :
+                new LineString { Coordinates = [[101.1, 0.1d], [102.1, 1.1d]] } :
                 item == 2 ?
-                new LineString { Coordinates = new double[][] { new[] { 101.1, 0.1d, 10.1d }, new[] { 102.1, 1.1d, 10.1d } } } :
+                new LineString { Coordinates = [[101.1, 0.1d, 10.1d], [102.1, 1.1d, 10.1d]] } :
                 new LineString {
-                    Coordinates = new double[][] { new[] { 101.1, 0.1d }, new[] { 102.1, 1.1d } },
-                    Bbox = new [] { 100.1, 0.1d, 102.1, 1.1d }
+                    Coordinates = [[101.1, 0.1d], [102.1, 1.1d]],
+                    Bbox = [100.1, 0.1d, 102.1, 1.1d]
                 }
-            }
+            ]
         };
 
         var json = dataToSerialize.ToGeoJson();
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = geoJson.ToGeoObject<GeometryCollection>();
         Equivalent(dataToSerialize, data);
@@ -267,7 +268,7 @@ public class GeoJsonTests : Assert
 
         var json = dataToSerialize.ToGeoJson();
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = geoJson.ToGeoObject<Feature>();
         Equivalent(dataToSerialize, data);
@@ -282,7 +283,7 @@ public class GeoJsonTests : Assert
         // else default crs
         else
         {
-            True(data.Crs.Properties.Name == "urn:ogc:def:crs:OGC:1.3:CRS84");
+            Equal("urn:ogc:def:crs:OGC:1.3:CRS84", data.Crs.Properties.Name);
         }
     }
 
@@ -309,8 +310,8 @@ public class GeoJsonTests : Assert
 
         var dataToSerialize = new FeatureCollection
         {
-            Features = new[]
-            {
+            Features =
+            [
                 new Feature
                 {
                     Geometry = new Geometry
@@ -319,7 +320,7 @@ public class GeoJsonTests : Assert
                         Bbox = bbox
                     }
                 }
-            }
+            ]
         };
 
         if (type == GeoType.Point)
@@ -353,7 +354,7 @@ public class GeoJsonTests : Assert
 
         var json = dataToSerialize.ToGeoJson();
 
-        Equal(geoJson, json);
+        JsonAssertion.Equivalent(geoJson, json);
 
         var data = geoJson.ToGeoObject<FeatureCollection>();
         Equivalent(dataToSerialize, data);
@@ -368,7 +369,7 @@ public class GeoJsonTests : Assert
         // else default crs
         else
         {
-            True(data.Crs.Properties.Name == "urn:ogc:def:crs:OGC:1.3:CRS84");
+            Equal("urn:ogc:def:crs:OGC:1.3:CRS84", data.Crs.Properties.Name);
         }
     }
 }

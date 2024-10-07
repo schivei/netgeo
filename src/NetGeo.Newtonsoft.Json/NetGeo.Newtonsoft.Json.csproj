@@ -3,7 +3,6 @@
 
   <PropertyGroup>
     <RootNamespace>NetGeo.Json</RootNamespace>
-    <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>

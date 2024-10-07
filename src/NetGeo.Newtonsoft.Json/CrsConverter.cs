@@ -57,7 +57,15 @@ internal sealed class CrsConverter : JsonConverter<Crs>
         writer.WriteValue(value.Type);
 
         writer.WritePropertyName("properties");
-        serializer.Serialize(writer, value.Properties.ToDictionary(x => x.Key, x => x.Value));
+        writer.WriteStartObject();
+
+        foreach (var kvp in value.Properties)
+        {
+            writer.WritePropertyName(kvp.Key);
+            writer.WriteValue(kvp.Value);
+        }
+
+        writer.WriteEndObject();
 
         writer.WriteEndObject();
     }

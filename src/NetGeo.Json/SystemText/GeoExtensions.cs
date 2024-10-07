@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text.Json;
 
 namespace NetGeo.Json.SystemText;
@@ -6,14 +7,30 @@ public static class GeoExtensions
 {
     public static void SetDefaults()
     {
+        AppContext.SetSwitch("System.Text.Json.Serialization.Metadata", true);
+        AppContext.SetSwitch("System.Text.Json.Serialization.Converters", true);
+        AppContext.SetSwitch("System.Text.Json.JsonSerializer.IsReflectionEnabledByDefault", true);
+
+        var jsonOptions = JsonSerializerOptions.Default;
+
+        var field = typeof(JsonSerializerOptions).GetField("_isReadOnly", BindingFlags.Instance | BindingFlags.NonPublic);
+
+        field?.SetValue(jsonOptions, false);
+
+        if (!jsonOptions.Converters.Any(x => x is GeoObjectConverter))
+            jsonOptions.Converters.Add(new GeoObjectConverter());
+
+        if (!jsonOptions.Converters.Any(x => x is CrsConverter))
+            jsonOptions.Converters.Add(new CrsConverter());
+
+        field.SetValue(jsonOptions, true);
     }
 
     private static JsonSerializerOptions Options()
     {
-        var opts = new JsonSerializerOptions();
-        opts.Converters.Add(new GeoObjectConverter());
+        SetDefaults();
 
-        return opts;
+        return JsonSerializerOptions.Default;
     }
 
     public static string ToGeoJson<T>(this T geoObject) =>
