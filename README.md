@@ -36,14 +36,11 @@ dotnet add package NetGeo.Newtonsoft.Json
 | Packages version | dotnet Version |
 | ---------------- | -------------- |
 |      2023.X      | .net 7         |
+|      2024.X      | .net 8         |
 
 ## Notes
 
-Removed the netstandard support, because the System.Text.Json is not supported in netstandard.
-
-Removed the net6.0 support, because the System.Text.Json Default Options is not supported in net6.0.
-
-If your using Newtonsoft.Json, you need to add the following code to your startup:
+You need to add the following code to your startup:
 
 ```csharp
 GeoExtensions.SetDefaults();
@@ -61,5 +58,4 @@ using NetGeo.Json.SystemText;
 
 * CRS Convertion
 * Other types where is not GeoJSON
-* .NET 8
-  * Comming in Dec 2023 
+
