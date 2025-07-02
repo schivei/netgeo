@@ -37,6 +37,7 @@ dotnet add package NetGeo.Newtonsoft.Json
 | ---------------- | -------------- |
 |      2023.X      | .net 7         |
 |      2024.X      | .net 8         |
+|      2025.X      | .net 9         |
 
 ## Notes
 
