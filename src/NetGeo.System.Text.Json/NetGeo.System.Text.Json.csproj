@@ -5,20 +5,16 @@
     <RootNamespace>NetGeo.Json</RootNamespace>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <TargetFramework>netstandard2.0</TargetFramework>
-  </PropertyGroup>
-
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="IndexRange" Version="1.0.2" />
+    <PackageReference Include="IndexRange" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-    <PackageReference Include="IndexRange" Version="1.0.2" />
+    <PackageReference Include="IndexRange" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="8.0.4" />
+    <PackageReference Include="System.Text.Json" Version="9.0.8" />
   </ItemGroup>
 
   <ItemGroup>

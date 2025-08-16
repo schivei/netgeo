@@ -1,5 +1,3 @@
-using System.Runtime.Serialization;
-
 namespace NetGeo.Json;
 
 public class CrsProperties : Dictionary<string, string>
@@ -25,10 +23,6 @@ public class CrsProperties : Dictionary<string, string>
     }
 
     public CrsProperties(int capacity, IEqualityComparer<string> comparer) : base(capacity, comparer)
-    {
-    }
-
-    protected CrsProperties(SerializationInfo info, StreamingContext context) : base(info, context)
     {
     }
 
